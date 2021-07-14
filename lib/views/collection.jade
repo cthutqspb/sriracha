@@ -21,7 +21,7 @@ block content
           // /.row
           if Collection.searchField
             .row
-              .col-md-10
+              .col-md-12
                 .form-group.input-group-lg.input-group
                     input.typeahead.form-control(type='text', placeholder="Search by " + Collection.searchField)
                     span.input-group-btn
@@ -29,12 +29,12 @@ block content
                         i.fa.fa-search 
 
           .row
-            .col-md-10
+            .col-md-12
               a.btn.btn-success.btn-lg(href=Collection.collection.name + "/new") New #{Collection.modelName}
 
 
           .row
-            .col-md-10
+            .col-md-12
               h2 #{Collection.pluralName}
               .table-responsive
                 table.table.table-bordered.table-hover.table-striped
@@ -51,7 +51,7 @@ block content
                           td= 10 * page + (i + 1)
                             each field in Collection.adminPaths
                                 td 
-                                    a(href="#{appPath}/#{Collection.collection.name}/#{doc.id}") #{doc[field]}
+                                    a(href="#{appPath}/#{Collection.collection.name}/#{doc.id}") #{doc.get(field)}
               if (pages > 1)
                 nav
                   ul.pagination

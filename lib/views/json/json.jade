@@ -1,0 +1,49 @@
+.form-group(class=typeof errors[field] === "undefined" ? "" : "has-error")
+  - var selector = Collection.modelName == 'Config' || Collection.modelName == 'Cache'  ? 'no_tinymce' : 'tinymce'
+  - console.log('doc', doc._id, 'path', path)
+    .input-group(class='#{selector}')
+        h4
+            
+              
+              .label.label-default(for='editor') #{doc._id}
+              
+        textarea.form-control(id='editor' name=doc._id, type='text', placeholder='', autofocus='', class='#{selector}' style="display: none")
+            | #{JSON.stringify(doc, undefined, 2)}
+        
+        div(id='jsoneditor' style="width: 600px; height: 400px;" )    
+        
+    if errors[doc._id]
+        span.help-block.text-danger= errors[doc._id].message
+
+block append scripts
+  script.
+    window.addEventListener('load', function(){
+          var container = document.getElementById("jsoneditor")
+          
+          var textarea = document.getElementById('editor')
+          var options = {
+            onError: function (err) {
+               alert(err.toString())
+             },
+             onEvent: function(node, event) {
+               if (node.value !== undefined) {
+                 textarea.innerHTML = JSON.stringify(editor.get(), undefined, 2)
+                 console.log(event.type + ' event ' +
+                   'on value ' + JSON.stringify(node.value) + ' ' +
+                   'at path ' + JSON.stringify(node.path)
+                 )
+               } else {
+                 console.log(event.type + ' event ' +
+                   'on field ' + JSON.stringify(node.field) + ' ' +
+                   'at path ' + JSON.stringify(node.path)
+                 )
+               }
+             }
+          }
+          
+          var editor = new JSONEditor(container, options)          
+          var local_data =!{JSON.stringify(doc)};
+          editor.set(local_data);
+          
+        })
+  

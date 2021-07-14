@@ -45,14 +45,50 @@ block content
                     |  #{doc.id}
             .row
               .col-xs-8.col-xs-offset-2
-                form(action="", method="post")
-                  each path in Collection.adminPaths
-                    include ./fields/fields
-                  ul.list-inline
-                    li
-                      button.btn.btn-success(type='submit') Save
-                    li
-                      button.btn.btn-danger(type='submit' name="_method" value='DELETE') Delete
+              .search-tabs-wrapper
+                ul.nav.nav-tabs(role="tablist")
+                  li.active
+                    a(href="#json" role="tab" data-toggle="tab") Json
+                  li
+                    a(href="#table" role="tab" data-toggle="tab") Table
+                .tab-content.search-tabs-content
+                  .tab-pane.active(id="json")             
+                    form(action="", method="post")
+                      //- div(id='jsoneditor' style="width: 600px" )  
+                      include ./json/json                     
+                      ul.list-inline
+                        li
+                          button.btn.btn-success(type='submit' onClick='saveJson') Save
+                        li
+                          button.btn.btn-danger(type='submit' name="_method" value='DELETE') Delete
+                  .tab-pane(id="table")      
+                    form(action="", method="post")
+                      each path in Collection.adminPaths
+                        include ./fields/fields                        
+                      ul.list-inline
+                        li
+                          button.btn.btn-success(type='submit') Save
+                        li
+                          button.btn.btn-danger(type='submit' name="_method" value='DELETE') Delete
+                     
+//- block append scripts
+//-   script.
+//-     window.addEventListener('load', function(){
+//-           var container = document.getElementById("jsoneditor")
+//-           var options = {}
+//-           var editor = new JSONEditor(container, options)
+//- 
+//-             var local_data =!{JSON.stringify(doc)};
+//-           //- console.log('local_data', local_data)
+//-           editor.set(local_data)
+//-           function getEditor() {
+//-             return editor;
+//-           }
+//- 
+//-           doc = editor.get()
+//-           console.log('doc', doc)
+//-         })
+//- 
 // textarea
 block append scripts
   script(type='text/javascript').

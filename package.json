@@ -1,40 +1,43 @@
 {
-  "_from": "git+ssh://git@github.com/nerpa87/sriracha.git",
-  "_id": "sriracha-admin@0.0.3",
+  "_args": [
+    [
+      "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+      "/hdd/web/arctic_portal_local/arctic-portal"
+    ]
+  ],
+  "_from": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+  "_id": "sriracha-admin@git+ssh://git@github.com/nerpa87/sriracha.git#fa2889567ae88e154cec829c8bd96fb354fb26c5",
   "_inBundle": false,
-  "_integrity": "sha1-r1AmfmnIEFKcEa52/JTmfCU/2WI=",
+  "_integrity": "",
   "_location": "/sriracha-admin",
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "sriracha-admin@git+ssh://git@github.com/nerpa87/sriracha.git",
-    "name": "sriracha-admin",
-    "escapedName": "sriracha-admin",
-    "rawSpec": "git+ssh://git@github.com/nerpa87/sriracha.git",
-    "saveSpec": "git+ssh://git@github.com/nerpa87/sriracha.git",
+    "raw": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+    "rawSpec": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+    "saveSpec": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
     "fetchSpec": "ssh://git@github.com/nerpa87/sriracha.git",
     "gitCommittish": "master"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "git+ssh://git@github.com/nerpa87/sriracha.git#cb6eff7372d5b9f87a5b24844e43322a4b6b34f3",
-  "_spec": "sriracha-admin@git+ssh://git@github.com/nerpa87/sriracha.git",
-  "_where": "/home/trp/projects/mainp/arctic-portal",
+  "_resolved": "git+ssh://git@github.com/nerpa87/sriracha.git#fa2889567ae88e154cec829c8bd96fb354fb26c5",
+  "_spec": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+  "_where": "/hdd/web/arctic_portal_local/arctic-portal",
   "author": "",
   "bugs": {
     "url": "https://github.com/hdngr/sriracha/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "body-parser": "^1.14.1",
     "bower": "^1.7.7",
     "express": ">=4.0",
     "express-session": "^1.12.1",
     "jade": "^1.11.0",
+    "jsoneditor": "^9.5.1",
     "lodash": "^3.10.1",
-    "method-override": "^2.3.5",
-    "mongoose": ">=4"
+    "method-override": "^2.3.5"
   },
   "deprecated": false,
   "description": "An admin middleware for mongoose and express.",
@@ -71,7 +74,6 @@
     "url": "git://github.com/hdngr/sriracha.git"
   },
   "scripts": {
-    "postinstall": "bower install",
     "start": "gulp simple",
     "test": "gulp test",
     "test-ci": "istanbul cover -x 'examples' _mocha -- tests/ -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

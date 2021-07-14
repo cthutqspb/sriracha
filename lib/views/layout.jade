@@ -18,6 +18,7 @@ html(lang='en')
       link(href='#{appPath}/static/css/plugins/morris.css', rel='stylesheet')
       // Custom Fonts
       link(href='#{appPath}/static/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+      link(href='#{appPath}/static/css/jsoneditor.min.css', rel='stylesheet', type='text/css')
       // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
       // WARNING: Respond.js doesn't work if you view the page via file://
       //if lt IE 9
@@ -27,6 +28,7 @@ html(lang='en')
         block content
 
     block scripts
+      script(type="text/javascript" src='#{appPath}/static/js/jsoneditor.min.js')
       script(type="text/javascript" src='#{appPath}/static/js/jquery.js')
       script(type="text/javascript" src="#{appPath}/components/tinymce/tinymce.js")
       // Bootstrap Core JavaScript
