@@ -1,0 +1,40 @@
+.form-group(class=typeof errors[field] === "undefined" ? "" : "has-error")
+  - var selector = Collection.modelName == 'Config' || Collection.modelName == 'Cache'  ? 'no_tinymce' : 'tinymce'
+    .input-group(class='#{selector}')
+        h4    
+        
+              .label.label-default(for='editor') #{doc._id}
+        input(type="hidden" name="_is_json" value="1")
+        textarea.form-control(id='editor', name='_form_content', type='text', placeholder='', autofocus='', class='#{selector}' style="display: none")            
+        
+        div(id='jsoneditor' style="width: 600px; height: 400px;" )    
+        
+    if errors[doc._id]
+        span.help-block.text-danger= errors[doc._id].message
+
+block append scripts
+  script.
+    window.addEventListener('load', function(){
+          var container = document.getElementById("jsoneditor")
+          
+          var textarea = document.getElementById('editor')
+          var options = {
+            mode: 'tree',
+            modes: ['code', 'form', 'text', 'tree', 'view', 'preview'], // allowed modes
+            sortObjectKeys: true,
+            onError: function (err) {
+               alert(err.toString())
+             },
+             onEvent: function(node, event) {
+               if (node.value !== undefined) {
+                 textarea.innerHTML = JSON.stringify(editor.get(), undefined, 2)
+               } 
+             }
+          }
+          
+          var editor = new JSONEditor(container, options)          
+          var local_data =!{JSON.stringify(doc)};
+          editor.set(local_data);
+          
+        })
+  
