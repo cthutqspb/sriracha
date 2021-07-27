@@ -6,7 +6,7 @@
               .label.label-default(for='editor') #{doc._id}
         input(type="hidden" name="_is_json" value="1")
         textarea.form-control(id='editor', name='_form_content', type='text', placeholder='', autofocus='', class='#{selector}' style="display: none")            
-        
+          | #{JSON.stringify(doc, undefined, 2)}
         div(id='jsoneditor' style="width: 600px; height: 400px;" )    
         
     if errors[doc._id]
@@ -23,13 +23,14 @@ block append scripts
             modes: ['code', 'form', 'text', 'tree', 'view', 'preview'], // allowed modes
             sortObjectKeys: true,
             onError: function (err) {
-               alert(err.toString())
-             },
-             onEvent: function(node, event) {
-               if (node.value !== undefined) {
-                 textarea.innerHTML = JSON.stringify(editor.get(), undefined, 2)
-               } 
-             }
+              alert(err.toString())
+            },
+            onChangeText: function(text, event) {
+              if (text !== undefined) {
+                console.log('textarea.innerHTML', text)
+                textarea.innerHTML = JSON.stringify(editor.get(), undefined, 2)
+              } 
+            }
           }
           
           var editor = new JSONEditor(container, options)          
