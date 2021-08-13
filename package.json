@@ -1,29 +1,29 @@
 {
   "_args": [
     [
-      "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+      "git+ssh://git@github.com/cthutqspb/sriracha.git#master",
       "/hdd/web/arctic_portal_local/arctic-portal"
     ]
   ],
-  "_from": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
-  "_id": "sriracha-admin@git+ssh://git@github.com/nerpa87/sriracha.git#fa2889567ae88e154cec829c8bd96fb354fb26c5",
+  "_from": "git+ssh://git@github.com/cthutqspb/sriracha.git#master",
+  "_id": "sriracha-admin@git+ssh://git@github.com/cthutqspb/sriracha.git#3c6819f0d211d56af6df800ffd38ec9c0fd09792",
   "_inBundle": false,
   "_integrity": "",
   "_location": "/sriracha-admin",
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
-    "rawSpec": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
-    "saveSpec": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
-    "fetchSpec": "ssh://git@github.com/nerpa87/sriracha.git",
+    "raw": "git+ssh://git@github.com/cthutqspb/sriracha.git#master",
+    "rawSpec": "git+ssh://git@github.com/cthutqspb/sriracha.git#master",
+    "saveSpec": "git+ssh://git@github.com/cthutqspb/sriracha.git#master",
+    "fetchSpec": "ssh://git@github.com/cthutqspb/sriracha.git",
     "gitCommittish": "master"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "git+ssh://git@github.com/nerpa87/sriracha.git#fa2889567ae88e154cec829c8bd96fb354fb26c5",
-  "_spec": "git+ssh://git@github.com/nerpa87/sriracha.git#master",
+  "_resolved": "git+ssh://git@github.com/cthutqspb/sriracha.git#3c6819f0d211d56af6df800ffd38ec9c0fd09792",
+  "_spec": "git+ssh://git@github.com/cthutqspb/sriracha.git#master",
   "_where": "/hdd/web/arctic_portal_local/arctic-portal",
   "author": "",
   "bugs": {

@@ -1,0 +1,12 @@
+.resultDivWrapper {
+  margin: 10px 0 20px 0;
+}
+
+.resultDiv {
+  overflow-x: auto;
+}
+
+
+.fieldsWrapper a {
+    padding: 4px 12px;
+}
