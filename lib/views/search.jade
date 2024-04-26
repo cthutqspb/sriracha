@@ -1,0 +1,24 @@
+.row
+  .col-md-12
+    h2 #{Collection.pluralName}
+    p #{Collection.collection.name}
+    .table-responsive
+      table.table.table-bordered.table-hover.table-striped
+        thead
+          tr
+            th #
+            each field in Collection.adminPaths
+              th= field
+                a(href="?sortField=" + field + "&criteria=" + (criteria || ''))
+                  i.fa.fa-sort.pull-right
+        tbody
+          each doc, i in docs
+              tr
+                td= 10 * page + (i + 1)
+                  each field in Collection.adminPaths
+                      td
+                          a(href="#{appPath}/#{Collection.collection.name}/#{doc.id}") #{doc.get(field)}
+    if (pages > 1)
+      nav
+        ul.pagination
+          != paginate(pages, page)

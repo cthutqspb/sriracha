@@ -17,8 +17,8 @@ block content
                   a(href=appPath) Admin
                 li.active
                   i.fa.fa-
-                  |  #{Collection.pluralName}          
-          
+                  |  #{Collection.pluralName}
+
           .row
             .col-md-12
               .form-group.input-group-lg.input-group
@@ -27,12 +27,12 @@ block content
                       option= field
                   input.form-control(id="searhField" name="search" type='text', placeholder="Enter value" onChange="searchFn()")
                   span.input-group-btn
-                            
+
           .table-responsive( class='resultDivWrapper')
-            table.table.table-bordered.table-hover.table-striped(id='resultDiv')          
-          
-          
-                  
+            table.table.table-bordered.table-hover.table-striped(id='resultDiv')
+
+
+
           .row
             .col-md-12
               a.btn.btn-success.btn-lg(href=Collection.collection.name + "/new") New #{Collection.modelName}
@@ -55,7 +55,7 @@ block content
                         tr
                           td= 10 * page + (i + 1)
                             each field in Collection.adminPaths
-                                td 
+                                td
                                     a(href="#{appPath}/#{Collection.collection.name}/#{doc.id}") #{doc.get(field)}
               if (pages > 1)
                 nav
@@ -69,49 +69,67 @@ block append scripts
         var fieldValue = document.getElementById('searhField').value;
         var fieldName = document.getElementById('fieldName').value;
         var data = {};
-        
+
         data[fieldName] = fieldValue;
-        
+
         return $.ajax({
             contentType: "application/json",
             dataType: "text",
             url: window.location.href.split('?')[0] + '/suggest',
             data: JSON.stringify(data),
             type: 'POST',
-            success: function (json) {            
+            success: function (json) {
                 var elements = document.createElement("tbody");
-                var thead = document.createElement("thead"); 
+                var thead = document.createElement("thead");
                 var tr = document.createElement("tr");
-                   
-                var parsed = JSON.parse(json);    
-                            
+
+                var parsed = JSON.parse(json);
+                console.log('test',json, parsed)
                 if(parsed.length <= 0)
                   return
                 //thead
-                Object.entries(parsed[0]).map((el, idx) => {
-                  var th = document.createElement("th");
-                  th.innerHTML = `${el[0]}`;
-                  tr.appendChild(th);
-                });
-                
+                //Object.entries(parsed[0]).map((el, idx) => {
+                //  if(typeof(el[1]) === 'object') {
+                //    Object.keys(el[1]).forEach(key => {
+                //      var th = document.createElement("th");
+                //      th.innerHTML = `${el[0]}.${key}`;
+                //      tr.appendChild(th);
+                //    })
+                //  } else {
+                //    var th = document.createElement("th");
+                //    th.innerHTML = `${el[0]}`;
+                //    tr.appendChild(th);
+                //  }
+
+                //});
+
                 thead.appendChild(tr);
-                
+
                 //tbody
                 parsed.forEach((item, i) => {
                   var id = item.id;
                   var fields = document.createElement("tr");
-                  
+
                   Object.entries(item).map((el, idx) => {
                     var td = document.createElement("td");
-                    td.innerHTML = `<a href='#{appPath}/#{Collection.collection.name}/${id}'>${el[1]}</a>`;
-                    fields.appendChild(td);
+                    console.log('el[1]', el[1])
+                    if(typeof(el[1]) === 'object') {
+                      Object.keys(el[1]).forEach((key, i) => {
+                        console.log('key', key)
+                        td.innerHTML = `<a href='#{appPath}/#{Collection.collection.name}/${id}'>${el[1][key]}</a>`;
+                        fields.appendChild(td);
+                      })
+                    } else {
+                      td.innerHTML = `<a href='#{appPath}/#{Collection.collection.name}/${id}'>${el[1]}</a>`;
+                      fields.appendChild(td);
+                    }
                   })
                   var fieldsWrapper = document.createElement("tr");
                   fieldsWrapper.classList.add("fieldsWrapper");
                   fieldsWrapper.appendChild(fields);
                   elements.appendChild(fields);
-                });        
-                
+                });
+
                 resultDiv.innerHTML = '';
                 resultDiv.appendChild(thead);
                 resultDiv.appendChild(elements);
@@ -127,6 +145,6 @@ block append scripts
       //-     window.location.href = window.location.href+'/'+item.id
       //-   },
       //-   source: function(term, process) {
-      //- 
+      //-
       //- }
       //- });
